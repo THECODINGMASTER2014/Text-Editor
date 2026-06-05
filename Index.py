@@ -62,6 +62,8 @@ def standard_font():
     global font_size
     font_size = 12
     txt_edit.config(font=("Arial", font_size), fg="black")
+def clear_text():
+    txt_edit.delete(1.0, END)
 
 # Text editor
 txt_edit = Text(kitty, font=("Arial", font_size))
@@ -78,7 +80,7 @@ btn_increase = Button(fr_buttons, text="A+", command=increase_font)
 btn_decrease = Button(fr_buttons, text="A-", command=decrease_font)
 btn_color = Button(fr_buttons, text="Text Color", command=change_color)
 btn_standard = Button(fr_buttons, text="Default Font", command=standard_font)
-
+btn_clear = Button(fr_buttons, text="Clear Text", command=clear_text)
 # Layout
 btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 btn_save.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
@@ -86,5 +88,6 @@ btn_increase.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
 btn_decrease.grid(row=3, column=0, sticky="ew", padx=5, pady=5)
 btn_color.grid(row=4, column=0, sticky="ew", padx=5, pady=5)
 btn_standard.grid(row=5, column=0, sticky="ew", padx=5, pady=5)
+btn_clear.grid(row=6, column=0, sticky="ew", padx=5, pady=5)
 
 kitty.mainloop()
