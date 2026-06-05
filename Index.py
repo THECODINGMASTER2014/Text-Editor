@@ -3,6 +3,8 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter.colorchooser import askcolor
 from spellchecker import SpellChecker
 
+#`---------------- Big Stuff ----------------`
+
 kitty = Tk()
 kitty.title("WordSmith")
 kitty.geometry("900x600")
