@@ -3,10 +3,10 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter.colorchooser import askcolor
 from spellchecker import SpellChecker
 
-#`---------------- Big Stuff ----------------`
+# ---------------- Big Stuff ----------------
 
 kitty = Tk()
-kitty.title("WordSmith")
+kitty.title("FreeFlow")
 kitty.geometry("900x600")
 
 kitty.rowconfigure(0, weight=1)
@@ -30,7 +30,7 @@ def open_file():
     with open(filepath, "r", encoding="utf-8") as file:
         txt_edit.insert("1.0", file.read())
 
-    kitty.title(f"WordSmith - {filepath}")
+    kitty.title(f"FreeFlow - {filepath}")
     highlight_mistakes()
 
 
@@ -46,7 +46,7 @@ def save_file():
     with open(filepath, "w", encoding="utf-8") as file:
         file.write(txt_edit.get("1.0", END))
 
-    kitty.title(f"WordSmith - {filepath}")
+    kitty.title(f"FreeFlow - {filepath}")
 
 
 def increase_font():
@@ -57,13 +57,16 @@ def increase_font():
 
 def decrease_font():
     global font_size
+
     if font_size > 6:
         font_size -= 2
-        txt_edit.config(font=("Arial", font_size))
+
+    txt_edit.config(font=("Arial", font_size))
 
 
 def change_color():
     color = askcolor(title="Choose Text Color")[1]
+
     if color:
         txt_edit.config(fg=color)
 
@@ -126,6 +129,7 @@ def highlight_mistakes(event=None):
 
     update_word_count()
 
+
 # ---------------- Text Area ----------------
 
 txt_edit = Text(
@@ -150,41 +154,59 @@ txt_edit.bind("<KeyRelease>", highlight_mistakes)
 fr_buttons = Frame(kitty, relief=RAISED, bd=2)
 fr_buttons.grid(row=0, column=0, sticky="ns")
 
-Button(fr_buttons, text="Open", command=open_file).grid(
-    row=0, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Open",
+    command=open_file
+).grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="Save", command=save_file).grid(
-    row=1, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Save",
+    command=save_file
+).grid(row=1, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="A+", command=increase_font).grid(
-    row=2, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="A+",
+    command=increase_font
+).grid(row=2, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="A-", command=decrease_font).grid(
-    row=3, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="A-",
+    command=decrease_font
+).grid(row=3, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="Text Color", command=change_color).grid(
-    row=4, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Text Color",
+    command=change_color
+).grid(row=4, column=0, sticky="ew", padx=5, pady=5)                                                         
 
-Button(fr_buttons, text="Default Font", command=standard_font).grid(
-    row=5, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Default Font",
+    command=standard_font
+).grid(row=5, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="Clear Text", command=clear_text).grid(
-    row=6, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Clear Text",
+    command=clear_text
+).grid(row=6, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="Undo", command=undo).grid(
-    row=7, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Undo",
+    command=undo
+).grid(row=7, column=0, sticky="ew", padx=5, pady=5)
 
-Button(fr_buttons, text="Redo", command=redo).grid(
-    row=8, column=0, sticky="ew", padx=5, pady=5
-)
+Button(
+    fr_buttons,
+    text="Redo",
+    command=redo
+).grid(row=8, column=0, sticky="ew", padx=5, pady=5)
 
 # ---------------- Status Bar ----------------
 
